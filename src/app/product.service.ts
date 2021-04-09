@@ -10,6 +10,8 @@ import {  catchError } from 'rxjs/operators';
 export class ProductService {
 
   baseUrl="api/foods"
+  userUrl="api/users"
+  orderUrl="api/orders"
   products:any;
 
   headers = new HttpHeaders().set('Content-Type', 'application/json').set('Accept', 'application/json');
@@ -22,6 +24,14 @@ export class ProductService {
   private handleError(error: any) {
     console.log(error);
     return throwError(error);
+  }
+  
+  findUsers(){
+    return this.http.get<any[]>(this.userUrl);
+  }
+  
+  findOrders(){
+    return this.http.get<any[]>(this.orderUrl);
   }
   
   findAll() {
